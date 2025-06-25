@@ -1,12 +1,13 @@
-from pypdf import PdfReader
 from docx import Document
+import pdfplumber
 
-def extract_text_from_pdf(pdf_path):
-    reader = PdfReader(pdf_path) # pdf dosyası açılır
+def extract_text_with_pdfplumber(pdf_path):
     text = ""
-    for page in reader.pages:
-        text += page.extract_text()
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text() + "\n"
     return text
+
 
 def extract_text_from_docx(docx_path):
     doc = Document(docx_path) # docx dosyası açılır.
