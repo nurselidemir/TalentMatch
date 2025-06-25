@@ -1,6 +1,7 @@
 import os # dosya uzantısı alabilmek için
 #  dosyanın .pdf mi .docx mi olduğunu ayırt etmek için
 from parser import extract_text_from_docx, extract_text_with_pdfplumber,extract_email, extract_phone,extract_name
+from sectioner import segment_and_classify_sections
 
 file_path = input("Enter the file path (.pdf or .docx):").strip()
 extension = os.path.splitext(file_path)[1].lower()
@@ -17,3 +18,10 @@ print(text[:500]) # 0 dan 500'e
 print(" Email:", extract_email(text))
 print(" Phone:", extract_phone(text))
 print(" Name:", extract_name(text))
+
+sections = segment_and_classify_sections(text)
+print("\n--- Sectioned CV ---")
+for sec, content_list in sections.items():
+    print(f"\n {sec.upper()}")
+    for content in content_list:
+        print(content[:300] + "...\n")
