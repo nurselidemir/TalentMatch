@@ -1,6 +1,7 @@
 from docx import Document
 import pdfplumber
 import re
+import spacy
 
 def extract_text_with_pdfplumber(pdf_path):
     text = ""
@@ -28,3 +29,13 @@ def extract_phone(text):
 
     phones = [m[0] for m in matches if m[0].strip()]
     return phones[0] if phones else None
+
+nlp = spacy.load("en_core_web_sm")
+
+def extract_name(text):
+    parsed_text = nlp(text) # metni işle
+    for ent in parsed_text.ents:
+        if ent.label_ == "PERSON":
+            return ent.text
+    return None
+
