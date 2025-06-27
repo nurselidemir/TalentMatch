@@ -39,3 +39,21 @@ def extract_name(text):
             return ent.text
     return None
 
+import re
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+
+CUSTOM_EXCLUDE_WORDS = {
+    "candidate", "company", "description", "position", "ideal", "inc", "should", "via",
+    "hands", "expose", "comfortable", "preferred", "seeking", "required", "responsible",
+    "solutions", "team", "plus", "looking", "we", "our", "you", "your"
+}
+
+def extract_keywords(text: str):
+    all_words = set(re.findall(r"\b\w+\b", text.lower()))
+    return {
+        word for word in all_words
+        if word not in ENGLISH_STOP_WORDS
+        and word not in CUSTOM_EXCLUDE_WORDS
+        and len(word) > 2
+    }
+
