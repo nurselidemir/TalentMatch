@@ -2,6 +2,9 @@ from classifier import classify_cv_section
 import re
 
 def segment_and_classify_sections(text):
+    """
+    CV metnini bölümlere ayırır ve her bölümü etiketler.
+    """
     labeled_sections = {}
     current_block = []
 

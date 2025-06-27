@@ -4,6 +4,9 @@ import re
 import spacy
 
 def extract_text_with_pdfplumber(pdf_path):
+    """
+    PDF dosyasındaki metni çıkarır.
+    """
     text = ""
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
@@ -12,18 +15,30 @@ def extract_text_with_pdfplumber(pdf_path):
 
 
 def extract_text_from_docx(docx_path):
-    doc = Document(docx_path) # docx dosyası açılır.
-    text = "" 
-    for paragraph in doc.paragraphs: # tüm paragraflarda döner
-        text += paragraph.text + "\n"   # her paragrafı satır satır ekler.
+    """
+    DOCX dosyasındaki metni çıkarır.
+    """
+    doc = Document(docx_path)
+    text = ""
+    for paragraph in doc.paragraphs:
+        text += paragraph.text + "\n"
     return text
 
 def extract_email(text):
-    pattern = r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
-    matches = re.findall(pattern,text)
-    return matches[0] if matches else None
+    """
+    Metinden e-posta adresini çıkarır.
+    """
+    match = re.search(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+", text)
+    if match:
+        return match.group(0)
+    else:
+        return None
+
 
 def extract_phone(text):
+    """
+    Metinden telefon numarasını çıkarır.
+    """
     pattern = r"((\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?){1,2}\d{3,4})"
     matches = re.findall(pattern, text)
 
@@ -33,13 +48,15 @@ def extract_phone(text):
 nlp = spacy.load("en_core_web_sm")
 
 def extract_name(text):
-    parsed_text = nlp(text) # metni işle
+    """
+    Metinden kişisel adı çıkarır (spacy kullanarak).
+    """
+    parsed_text = nlp(text)
     for ent in parsed_text.ents:
         if ent.label_ == "PERSON":
             return ent.text
     return None
 
-import re
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 CUSTOM_EXCLUDE_WORDS = {
@@ -49,6 +66,9 @@ CUSTOM_EXCLUDE_WORDS = {
 }
 
 def extract_keywords(text: str):
+    """
+    Metinden anahtar kelimeleri çıkarır (stop words ve özel kelimeler hariç).
+    """
     all_words = set(re.findall(r"\b\w+\b", text.lower()))
     return {
         word for word in all_words
@@ -56,4 +76,3 @@ def extract_keywords(text: str):
         and word not in CUSTOM_EXCLUDE_WORDS
         and len(word) > 2
     }
-

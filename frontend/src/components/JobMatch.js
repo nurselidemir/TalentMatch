@@ -25,8 +25,8 @@ const JobMatch = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Match Job with CVs</h2>
+    <div className="p-6">
+      <h2 className="text-2xl font-semibold mb-4">Match Job with CVs</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           value={description}
@@ -35,21 +35,30 @@ const JobMatch = () => {
           cols={60}
           placeholder="Enter job description..."
           required
+          className="w-full p-2 border border-gray-300 rounded-md"
         />
         <br />
-        <button type="submit">Match</button>
+        <button
+          type="submit"
+          className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600"
+        >
+          Match
+        </button>
       </form>
 
       {results && (
-        <div>
-          <h3>Matched Candidates:</h3>
+        <div className="mt-6">
+          <h3 className="text-xl font-semibold">Matched Candidates:</h3>
           <ul>
             {results.map((candidate, idx) => (
-              <li key={idx} style={{ marginBottom: "20px" }}>
-                <strong>{candidate.filename}</strong><br />
-                Score: {candidate.similarity_score}<br />
-                Missing Skills: {candidate.missing_skills.join(", ") || "None"}<br />
-                <pre>{candidate.text_snippet}</pre>
+              <li key={idx} className="mb-6">
+                <strong>{candidate.filename}</strong>
+                <br />
+                Score: {candidate.similarity_score}
+                <br />
+                Missing Skills: {candidate.missing_skills.join(", ") || "None"}
+                <br />
+                <pre className="bg-gray-100 p-4">{candidate.text_snippet}</pre>
               </li>
             ))}
           </ul>

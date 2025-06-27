@@ -1,36 +1,51 @@
 import React, { useEffect, useState } from "react";
 
 const CVDetails = ({ filename, onClose }) => {
-  const [sections, setSections] = useState(null);
+  const [details, setDetails] = useState(null);
 
   useEffect(() => {
-    const fetchSections = async () => {
+    const fetchDetails = async () => {
       try {
         const response = await fetch(`http://localhost:8000/cv-details/?filename=${filename}`);
         const data = await response.json();
-        setSections(data.sections);
+        setDetails(data);
       } catch (error) {
-        console.error("CV detayları alınamadı:", error);
+        console.error("Unable to fetch CV details:", error);
       }
     };
 
-    fetchSections();
+    fetchDetails();
   }, [filename]);
 
-  if (!sections) return <div>Yükleniyor...</div>;
+  if (!details) return <div>Loading...</div>;
 
   return (
-    <div style={{ padding: "20px", border: "1px solid #ccc", marginTop: "20px" }}>
-      <h3>{filename} - Bölümler</h3>
-      {Object.entries(sections).map(([label, content], idx) => (
-        <div key={idx} style={{ marginBottom: "20px" }}>
-          <h4>{label}</h4>
+    <div className="p-6 border border-gray-300 mt-6 rounded-lg shadow-md">
+      <h3 className="text-xl font-semibold">{filename} - CV Details</h3>
+
+      <p><strong>Name:</strong> {details.name || "Not Available"}</p>
+      <p><strong>Email:</strong> {details.email || "Not Available"}</p>
+      <p><strong>Phone:</strong> {details.phone || "Not Available"}</p>
+
+      {details.summary && (
+        <div className="mb-4">
+          <h4 className="font-semibold">📝 Summary:</h4>
+          <pre className="bg-gray-100 p-4">{details.summary}</pre>
+        </div>
+      )}
+
+      {Object.entries(details.sections || {}).map(([label, content], idx) => (
+        <div key={idx} className="mb-4">
+          <h4 className="font-semibold">{label}</h4>
           {content.map((text, i) => (
-            <pre key={i} style={{ backgroundColor: "#f9f9f9", padding: "10px" }}>{text}</pre>
+            <pre key={i} className="bg-gray-200 p-4">{text}</pre>
           ))}
         </div>
       ))}
-      <button onClick={onClose}>Kapat</button>
+
+      <button onClick={onClose} className="mt-4 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600">
+        Close
+      </button>
     </div>
   );
 };

@@ -11,7 +11,7 @@ function JobList({ onSelect }) {
         const response = await axios.get("http://localhost:8000/saved-jobs/");
         setJobs(response.data);
       } catch (err) {
-        setError("İş ilanları alınamadı.");
+        setError("Failed to fetch job descriptions.");
         console.error(err);
       }
     };
@@ -20,25 +20,16 @@ function JobList({ onSelect }) {
   }, []);
 
   return (
-    <div style={{ maxWidth: "600px", margin: "2rem auto", padding: "1rem", background: "#eef2f3", borderRadius: "8px" }}>
-      <h2>Kayıtlı İş İlanları</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {jobs.length === 0 && !error && <p>Hiç ilan yok.</p>}
+    <div className="max-w-lg mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold mb-4">Saved Job Descriptions</h2>
+      {error && <p className="text-red-500">{error}</p>}
+      {jobs.length === 0 && !error && <p>No jobs available.</p>}
       <ul>
         {jobs.map((job) => (
-          <li key={job.id} style={{ marginBottom: "10px" }}>
+          <li key={job.id} className="mb-3">
             <button
               onClick={() => onSelect(job.description)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                background: "#3498db",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-                textAlign: "left"
-              }}
+              className="w-full p-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-left"
             >
               {job.description.slice(0, 80)}...
             </button>
