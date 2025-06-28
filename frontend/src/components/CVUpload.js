@@ -48,23 +48,34 @@ function CVUpload() {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "2rem auto", padding: "2rem", background: "#fff", borderRadius: "8px", boxShadow: "0 0 8px rgba(0,0,0,0.1)" }}>
-      <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Upload CV</h2>
+    <div style={{
+      maxWidth: "700px",
+      margin: "3rem auto",
+      padding: "2.5rem",
+      background: "#f5ecf1 ",
+      borderRadius: "12px",
+      boxShadow: "0 0 20px rgba(0,0,0,0.1)",
+      fontFamily: "Arial, sans-serif",
+      textAlign: "center"
+    }}>
+      <h2 style={{ fontSize: "2rem", marginBottom: "1.5rem", color: "#2c3e50" }}>Upload CV</h2>
 
       <label
         htmlFor="cv-upload-input"
         style={{
           display: "inline-block",
-          padding: "0.5rem 1rem",
-          backgroundColor: "#3498db",
+          padding: "0.75rem 1.5rem",
+          backgroundColor: "#8a5471",
           color: "#fff",
-          borderRadius: "4px",
+          borderRadius: "6px",
           cursor: "pointer",
-          marginBottom: "1rem"
+          marginBottom: "1rem",
+          fontWeight: "bold"
         }}
       >
         Select CV files
       </label>
+
       <input
         id="cv-upload-input"
         type="file"
@@ -82,23 +93,36 @@ function CVUpload() {
         </div>
       )}
 
-      <label style={{ display: "block", marginTop: "10px" }}>
+      <label style={{ display: "block", marginTop: "1.5rem", fontSize: "0.95rem" }}>
         <input
           type="checkbox"
           checked={consentChecked}
           onChange={(e) => setConsentChecked(e.target.checked)}
         />{" "}
-        I confirm that I have obtained explicit consent from the CV owners to upload and process their documents for job matching purposes.
+        I confirm that I have obtained explicit consent from the CV owners to upload and process their documents.
       </label>
 
-      <button onClick={handleUpload} style={{ marginTop: "1rem", padding: "0.5rem 1rem" }}>
+      <button
+        onClick={handleUpload}
+        style={{
+          marginTop: "2rem",
+          padding: "0.75rem 2rem",
+          fontSize: "1rem",
+          backgroundColor: "#618e62 ",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontWeight: "bold"
+        }}
+      >
         Upload
       </button>
 
       {uploadResult && (
-        <div style={{ marginTop: "1rem" }}>
+        <div style={{ marginTop: "1.5rem" }}>
           {uploadResult.files ? (
-            <ul>
+            <ul style={{ textAlign: "left", marginTop: "1rem" }}>
               {uploadResult.files.map((file, idx) => (
                 <li key={idx}>{file}</li>
               ))}
