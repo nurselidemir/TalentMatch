@@ -43,21 +43,27 @@ Styled with plain CSS (no UI framework).
 
 ## Technologies Used
 
-Backend:
-Python, FastAPI, spaCy, HuggingFace Transformers, Sentence-Transformers, FAISS, MongoDB
+**Backend:**
+- Python
+- FastAPI
+- spaCy
+- HuggingFace Transformers
+- Sentence-Transformers
+- FAISS
+- MongoDB
 
-Frontend:
-React, Axios, CSS
+**Frontend:**
+- React
+- Axios
+- CSS
 
-NLP Models:
+**NLP Models:**
+- `facebook/bart-large-mnli` – section classification
+- `all-MiniLM-L6-v2` – semantic embeddings
+- `t5-small` – summarization
 
-facebook/bart-large-mnli (section classification)
 
-all-MiniLM-L6-v2 (semantic embeddings)
-
-t5-small (summarization)
-
-## 📁 Backend File Structure
+## Backend File Structure
 
 - `app.py`: Initializes FastAPI app, MongoDB connection, and loads FAISS index
 - `api.py`: All REST API endpoints (upload, match, email, etc.)
@@ -69,7 +75,7 @@ t5-small (summarization)
 - `email_utils.py`: Sends email to matched candidates
 - `requirements.txt`: Python dependencies
 
-  ## How to Run
+## How to Run
 
 #### Backend
 
