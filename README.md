@@ -112,3 +112,18 @@ POST    /submit-job/
 GET     /saved-jobs/
 DELETE  /delete-cv/
 ```
+
+## UI Screenshots
+
+### Upload CV Page
+![Upload CV](./screenshots/1.png)
+
+### Uploaded CV List
+![Uploaded CVs](./screenshots/2.png)
+
+### Saved Job Descriptions & Matching
+![Job Matching](./screenshots/3.png)
+
+### Match Results & Emails Sent
+![Match Results](./screenshots/4.png)
+
