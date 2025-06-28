@@ -82,6 +82,7 @@ Create a `.env` file inside the `backend/` directory with the following content:
 ```env
 MAIL_USER=your_email@example.com
 MAIL_PASS=your_app_password
+```
 
 ## How to Run
 
