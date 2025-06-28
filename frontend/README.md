@@ -2,7 +2,7 @@
 
 This is the frontend interface for **TalentMatch NLP**, a CV parsing and job matching system built with React and FastAPI.
 
-## ✨ Features
+##  Features
 
 - Upload multiple CV files (`.pdf`, `.docx`)
 - View uploaded CV list with details
@@ -11,7 +11,7 @@ This is the frontend interface for **TalentMatch NLP**, a CV parsing and job mat
 - Send emails to matched candidates
 - Responsive and clean user interface
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -25,7 +25,7 @@ src/
 │   └── JobMatch.js
 ```
 
-## 🚀 Run Locally
+##  Run Locally
 
 ```bash
 cd frontend
@@ -35,14 +35,14 @@ npm start
 
 > App will run at: [http://localhost:3000](http://localhost:3000)
 
-## 📦 Dependencies
+## Dependencies
 
 - React
 - Axios
 - React DOM
 - Create React App
 
-## 🔗 Connects to
+##  Connects to
 
 - Backend API: `http://localhost:8000` (FastAPI)
 
