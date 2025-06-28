@@ -50,7 +50,37 @@ function CVUpload() {
   return (
     <div style={{ maxWidth: "600px", margin: "2rem auto", padding: "2rem", background: "#fff", borderRadius: "8px", boxShadow: "0 0 8px rgba(0,0,0,0.1)" }}>
       <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Upload CV</h2>
-      <input type="file" multiple accept=".pdf,.docx" onChange={handleFileChange} />
+
+      <label
+        htmlFor="cv-upload-input"
+        style={{
+          display: "inline-block",
+          padding: "0.5rem 1rem",
+          backgroundColor: "#3498db",
+          color: "#fff",
+          borderRadius: "4px",
+          cursor: "pointer",
+          marginBottom: "1rem"
+        }}
+      >
+        Select CV files
+      </label>
+      <input
+        id="cv-upload-input"
+        type="file"
+        multiple
+        accept=".pdf,.docx"
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
+
+      {selectedFiles && (
+        <div style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "#555" }}>
+          {Array.from(selectedFiles).map((file, idx) => (
+            <div key={idx}>{file.name}</div>
+          ))}
+        </div>
+      )}
 
       <label style={{ display: "block", marginTop: "10px" }}>
         <input
