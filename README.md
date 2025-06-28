@@ -95,11 +95,13 @@ Emails are sent manually via admin confirmation.
 No automatic tracking or external data storage is used.
 
 ## API Endpoints
-POST /upload-cv/
-GET /uploaded-cvs/
-GET /cv-details/
-POST /match-job/
-POST /send-emails/
-POST /submit-job/
-GET /saved-jobs/
-DELETE /delete-cv/
+```http
+POST    /upload-cv/
+GET     /uploaded-cvs/
+GET     /cv-details/
+POST    /match-job/
+POST    /send-emails/
+POST    /submit-job/
+GET     /saved-jobs/
+DELETE  /delete-cv/
+```
